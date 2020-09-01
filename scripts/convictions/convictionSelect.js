@@ -1,19 +1,48 @@
 import {useConvictions} from './convictionProvider.js'
+import {getConvictions} from './convictionProvider.js'
+/*
+    Which element in your HTML contains all components?
+    That's your Event Hub. Get a reference to it here.
+*/
+const eventHub = document.querySelector(".container")
+const contentTarget = document.querySelector(".filters__crime")
 
-const contentTarget = document.querySelector(".filters__crimes")
+// On the event hub, listen for a "change" event.
+eventHub.addEventListener("change", event => {
 
-export const convictionSelect = () => {
-    const convictions = useConvictions()
+    // Only do this if the `crimeSelect` element was changed
+    if (event.target.id === "crimeSelect") {
+        // Create custom event. Provide an appropriate name.
+        const customEvent = new CustomEvent("crimeChosen", {
+            detail: {
+                crimeThatWasChosen: event.target.value,
+                crimeId: event.target.id
+            }
+        })
 
-    const render = convictionsCollection => {
-        contentTarget.innerHTML = `
+        // Dispatch to event hub
+        eventHub.dispatchEvent(customEvent)
+    }
+})
+
+
+const render = convictionsCollection => {
+    contentTarget.innerHTML = `
         <select class="dropdown" id="crimeSelect">
-            <option value=0>Please select a crime...</option>
+            <option value="0">Please select a crime...</option>
             ${convictionsCollection.map(crimeObj => {
                 const crimeName = crimeObj.name
-                return `<option value=${crimeObj.id}>${crimeName}</option>`
+                return `<option id=${crimeObj.id} value=${crimeName}>${crimeName}</option>`
             })}
-        </select>`
-    }
-    render(convictions)
+        </select>
+    `
+}
+
+
+export const ConvictionSelect = () => {
+    getConvictions()
+        .then(() => {
+            const convictions = useConvictions()
+            render(convictions)
+        })
 }
