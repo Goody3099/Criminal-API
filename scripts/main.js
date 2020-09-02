@@ -5,12 +5,10 @@ import {criminalList} from './criminals/criminalList.js'
 import { ConvictionSelect } from './convictions/convictionSelect.js';
 import { getConvictions } from './convictions/convictionProvider.js';
 import { OfficerSelect } from './officers/OfficerSelect.js';
+import { NoteForm } from './notes/noteForm.js';
 
 
-// OfficerList();
- criminalList();
-// getConvictions()
-// .then(_=>convictionSelect());
-
+NoteForm();
+criminalList();
 ConvictionSelect();
 OfficerSelect();
