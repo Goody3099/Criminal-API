@@ -1,3 +1,5 @@
+import { alibiDialog } from "../alibi/alibi.js"
+
 export const criminalHTML = (criminalObj) => {
 	return `
 		<section id="criminal-${criminalObj.id}" class="card-criminal">
@@ -7,6 +9,8 @@ export const criminalHTML = (criminalObj) => {
 				<div>Crime Convicted of: ${criminalObj.conviction}</div>
 				<div>Start of Incarceration: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</div>
 				<div>End of Incarceration: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</div>
+				<button id="associates--${criminalObj.id}">Associate Alibis</button>
+				${alibiDialog(criminalObj.id)}
 			</div>
 		</section>
 	`
