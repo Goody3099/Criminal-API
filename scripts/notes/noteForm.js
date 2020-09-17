@@ -10,7 +10,7 @@ const render = (criminalCollection) => {
         <select class="dropdown" id="BADGUY">
         <option value="0">Please select a BAD GUY...</option>
         ${criminalCollection.map(criminalObj => {
-        return `<option id="${criminalObj.id}" value="${criminalObj.name}">${criminalObj.name}</option>`
+        return `<option id="${criminalObj.id}" value="${criminalObj.id}">${criminalObj.name}</option>`
     })}
     </select>
         <button id="saveNote">Save Note</button>
@@ -25,7 +25,8 @@ eventHub.addEventListener("click", clickEvent => {
             const newNote = {
                 // Key/value pairs here
                 text: document.getElementById("note-text").value,
-                suspect: document.getElementById("BADGUY").value,
+                suspect: parseInt(document.getElementById("BADGUY").value),
+                date: Date.now()
             }
 
             // Change API state and application state
