@@ -55,7 +55,6 @@ const render = aCriminalArray => {
 	let HTMLArray = aCriminalArray.map(singleCriminal => {
 		return criminalHTML(singleCriminal);
 	})
-	console.log("HTMLArray", HTMLArray);
 
 	domElement.innerHTML = HTMLArray.join("");
 }

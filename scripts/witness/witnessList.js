@@ -1,21 +1,20 @@
 import {getWitness, useWitness} from './witnessProvider.js'
+import {WitnessHTML} from './witness.js'
 
 export const witnessList = () => {
 	getWitness()
 	.then(()=> {
 		const witnessArray = useWitness();
-		//console.log("witnessArray", witnessArray);
 		addWitnessToDOM(witnessArray);
 	})
 }
 
-const addWitnessToDOM = (anWitnessArray) => {
+const addWitnessToDOM = (aWitnessArray) => {
 	const domElement = document.querySelector(".witnessContainer");
 
-	let HTMLArray = anWitnessArray.map(singleWitness => {
+	let HTMLArray = aWitnessArray.map(singleWitness => {
 		return WitnessHTML(singleWitness);
 	})
-	//console.log("HTMLArray", HTMLArray);
 
 	domElement.innerHTML = HTMLArray.join("");
 }

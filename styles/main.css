@@ -1,0 +1,28 @@
+.go-right {
+    float: right;
+    clear: right;
+    max-height: 57em;
+    overflow: auto;
+}
+
+.criminalsContainer {
+    flex-wrap: wrap;
+    display: flex;
+    margin-right: 15em;
+    justify-content: space-between;
+}
+
+.card-criminal {
+    width: 20em;
+}
+
+.section1 {
+    
+}
+
+/* .witnessContainer {
+    float: right;
+    clear: right;
+    max-height: 57em;
+    overflow: auto;
+} */
